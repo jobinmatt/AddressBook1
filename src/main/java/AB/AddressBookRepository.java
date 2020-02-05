@@ -1,0 +1,10 @@
+package AB;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+@RepositoryRestResource(collectionResourceRel = "addressBook", path = "addr")
+public interface AddressBookRepository extends CrudRepository<AddressBook, Integer> {
+    AddressBook findById(int id);
+    AddressBook findByName(String string);
+}
