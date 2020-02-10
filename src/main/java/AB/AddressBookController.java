@@ -18,7 +18,7 @@ public class AddressBookController {
     @GetMapping("/homepage")
     public String goHome(Model model) {
         model.addAttribute("addressBook", new AddressBook());
-        return "homepage";
+        return "index";
     }
 
     @PostMapping("/AddressBook")
