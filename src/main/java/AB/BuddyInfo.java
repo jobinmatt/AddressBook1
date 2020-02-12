@@ -16,6 +16,7 @@ import java.io.Serializable;
 /**
  * The Class AB.BuddyInfo.
  */
+@Component
 @Entity
 public class BuddyInfo implements Serializable {
 	private static final long serialVersionUID = 1L;

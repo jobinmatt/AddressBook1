@@ -35,6 +35,7 @@ import javax.xml.transform.stream.StreamSource;
 /**
  * The Class AB.AddressBook.
  */
+@Component
 @Entity
 public class AddressBook implements Serializable {
 
@@ -52,7 +53,7 @@ public class AddressBook implements Serializable {
     /**
      * The buddy info list.
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addressBook")
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Collection<BuddyInfo> buddyInfoList;
 
     /**
@@ -102,7 +103,7 @@ public class AddressBook implements Serializable {
      */
     public void clear() {
         buddyInfoList.clear();
-        System.out.println("Cleared all buddies!");
+        System.out.println("AddressBook:- Cleared all buddies!");
     }
     ////////////////////////////////////////////////////
 
@@ -116,13 +117,13 @@ public class AddressBook implements Serializable {
         if (buddy != null) {
             for (BuddyInfo testbuddy : this.buddyInfoList) {
                 if (buddy.equals(testbuddy)) {
-                    System.out.println("Same Buddies!");
+                    System.out.println("AddressBook:- Same Buddies!");
                     return false;
                 }
             }
             this.buddyInfoList.add(buddy);
-            System.out.println("Added a Buddy!");
-            System.out.println(buddy.Welcome());
+            System.out.println("AddressBook:- Added a Buddy!");
+            System.out.println("AddressBook:- " + buddy.Welcome());
         }
         return true;
     }
@@ -136,7 +137,7 @@ public class AddressBook implements Serializable {
     public void editBuddy(int index, BuddyInfo buddy) {
         if (index >= 0) {
             ((ArrayList) this.buddyInfoList).set(index, buddy);
-            System.out.println("Edited a Buddy!");
+            System.out.println("AddressBook:- Edited a Buddy!");
         }
     }
 
@@ -153,6 +154,9 @@ public class AddressBook implements Serializable {
                 temp = bud;
                 break;
             }
+        }
+        if (temp == null) {
+            System.out.println("AddressBook:- " + buddy + " not found!");
         }
         return this.buddyInfoList.remove(temp);
     }
@@ -196,7 +200,7 @@ public class AddressBook implements Serializable {
         try {
             String line = br.readLine();
             while (line != null) {
-                System.out.println(line);
+                System.out.println("AddressBook:- " + line);
                 this.addBuddy(BuddyInfo.importFromString(line));
                 line = br.readLine();
             }
@@ -303,6 +307,6 @@ public class AddressBook implements Serializable {
         addressBook.addBuddy(buddyInfo2);
         addressBook.addBuddy(buddyInfo3);
         addressBook.addBuddy(buddyInfo4);
-        System.out.println(addressBook.toString());
+        System.out.println("AddressBook:- " + addressBook.toString());
     }
 }
