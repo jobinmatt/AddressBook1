@@ -11,6 +11,13 @@
         <td th:text="${book.getName()}"></td>
     </tr>
 </table>
-
+<form action="#" th:action="@{/AddressBook}" method="post">
+    <div class='field'>
+        <p>Name: <input type="text" name="bookName"/></p>
+    </div>
+    <div class='actions'>
+        <p><input type="submit" value="Submit"/></p>
+    </div>
+</form>
 </body>
 </html>

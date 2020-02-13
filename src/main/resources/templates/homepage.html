@@ -11,7 +11,6 @@
         <td th:text="${book.getName()}"></td>
     </tr>
 </table>
-
 <form action="#" th:action="@{/AddressBook}" method="post">
     <div class='field'>
         <p>Name: <input type="text" name="bookName"/></p>
@@ -19,29 +18,6 @@
     <div class='actions'>
         <p><input type="submit" value="Submit"/></p>
     </div>
-</form>
-
-<h1 th:text="${addressBook.getName()}"></h1>
-<table>
-    <tr th:each="bud : ${addressBook.getBuddyInfoList()}">
-        <td th:text="${bud.getName()}"></td>
-    </tr>
-</table>
-
-<h1>Create Buddy</h1>
-<form action="#" th:action="@{/Buddy}" method="post">
-    <input type="hidden" name="addressBookName" th:value="${addressBook.getName()}"/>
-    <p>Name: <input type="text" name="buddyName" /></p>
-    <p>Address: <input type="text" name="buddyAddress" /></p>
-    <p>phoneNumber: <input type="text" name="buddyPhoneNumber" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
-
-<h1>Delete Buddy</h1>
-<form action="#" th:action="@{/DeleteBuddy}" method="post">
-    <input type="hidden" name="addressBookName" th:value="${addressBook.getName()}"/>
-    <p>Name: <input type="text" name="buddyName" /></p>
-    <p><input type="submit" value="Submit" /></p>
 </form>
 </body>
 </html>
