@@ -19,7 +19,7 @@ public class AddressBookController {
         this.addressBookRepository = repo;
     }
 
-    @GetMapping("/homepage")
+    @GetMapping("/")
     public String goHome(Model model) {
         model.addAttribute("addressBooks", addressBookRepository.findAll());
         return "homepage";
