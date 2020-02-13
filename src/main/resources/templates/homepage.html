@@ -7,17 +7,26 @@
 <body>
 <h1>AddressBook</h1>
 <table>
+    <tr th:if="${addressBooks.empty}">
+        <td>No address books :(</td>
+    </tr>
     <tr th:each="book : ${addressBooks}">
-        <td th:text="${book.getName()}"></td>
+        <td>
+            <form action="#" th:action="@{/DeleteBook}" method="post">
+                <input type="hidden" name="addressBookName" th:value="${book.getName()}"/>
+                <label for="submit" th:text="${book.getName()}"></label>
+                <input type="submit" name="submit" value="Remove"/>
+            </form>
+        </td>
     </tr>
 </table>
+<h2>Create an AddressBook</h2>
 <form action="#" th:action="@{/AddressBook}" method="post">
-    <div class='field'>
-        <p>Name: <input type="text" name="bookName"/></p>
-    </div>
-    <div class='actions'>
-        <p><input type="submit" value="Submit"/></p>
-    </div>
+        <span>
+            <label for="bookName">Name: </label>
+            <input type="text" name="bookName"/>
+            <input type="submit" value="Create AddressBook"/>
+        </span>
 </form>
 </body>
 </html>

@@ -45,6 +45,19 @@ public class AddressBookController {
         }
     }
 
+    @PostMapping("/DeleteBook")
+    public String removeAddressBook(@RequestParam(name = "addressBookName") String addressBookName,
+                              Model response) {
+        AddressBook a = addressBookRepository.findByName(addressBookName);
+        if (addressBookRepository.findByName(addressBookName) != null) {
+            addressBookRepository.delete(addressBookRepository.findByName(addressBookName));
+            System.out.println("AddressBookController:- Deleted an AddressBook with name: " + addressBookName);
+        } else {
+            System.out.println("AddressBookController:- Could NOT delete the AddressBook!");
+        }
+        return goHome(response);
+    }
+
     @GetMapping("/AddressBook")
     public String displayAddressBook(AddressBook book, Model response) {
         System.out.println(book.getBuddyInfoList());
